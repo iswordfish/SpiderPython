@@ -18,12 +18,15 @@ sys.setdefaultencoding('utf-8')
 
 
 
-def test():
+def test(max_time):
     max_behost_time =str(time.time())[0:12]
     max_create_time= float(str(time.time())[0:12])+552
     max_time=float(str(time.time())[0:12])+1162
-    htmlUrl = 'http://toutiao.com/api/article/recent/?source=2&count=20&category=__all__&'+ 'max_behot_time=%s'%(max_behost_time)+'&utm_source=toutiao&offset=0&' \
-    'max_create_time=%s'%max_create_time+'&_=%s'%max_time
+    htmlUrl = 'http://toutiao.com/api/article/recent/?source=2&count=20&category=__all__&max_behot_time=1457780334.83&utm_source=toutiao&offset=0&_=%s'%max_time
+    # htmlUrl = 'http://toutiao.com/api/article/recent/?source=2&count=20&category=__all__&'+ 'max_behot_time=%s'%(max_behost_time)+'&utm_source=toutiao&offset=0&' \
+    # 'max_create_time=%s'%max_create_time+'&_=%s'%max_time
+    #
+
 
     html = requests.get(htmlUrl).content
     send_headers = {
@@ -52,9 +55,9 @@ def test():
     # print len(text['data'])
 
     for i in range(len(text['data'])):
-          # print '%s' % i + text['data'][i]['abstract'] + '\n'
+          print '%s' % i + text['data'][i]['abstract'] + '\n'
           print text['data'][i]['datetime']+'\n'
-
+    #
 
 
     print  htmlUrl
@@ -62,5 +65,7 @@ def test():
 
 
 if __name__ == '__main__':
-    while True:
-       test()
+     max_time=1457780334962
+     while True:
+       test(max_time)
+       max_time += 1
