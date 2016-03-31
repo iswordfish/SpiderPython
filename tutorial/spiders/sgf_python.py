@@ -1,4 +1,7 @@
 #coding:utf-8
+'''
+360安全信息网站爬去
+'''
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor as sle #用于定义需要提取的链接
 from tutorial.items import *

@@ -1,4 +1,7 @@
 #coding:utf-8
+'''
+豆瓣电影爬去
+'''
 import scrapy
 from scrapy.utils.response import get_base_url
 from tutorial.items import *

@@ -1,12 +1,13 @@
 #coding:utf-8
+
+''''
+linux中国内容爬去
+'''
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor as sle #用于定义需要提取的链接
 from tutorial.items import *
 from scrapy.selector import Selector
 
-''''
-linux中国内容爬去
-'''
 
 class LinuxSpider(CrawlSpider):
     name = "linux"

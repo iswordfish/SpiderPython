@@ -1,4 +1,7 @@
 #coding:utf-8
+'''
+scrapy 官方教程
+'''
 import scrapy
 from scrapy.utils.response import get_base_url
 from tutorial.items import *

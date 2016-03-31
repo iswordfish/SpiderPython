@@ -1,4 +1,7 @@
 #coding=utf-8
+'''
+博客园内容爬去= 我的博客
+'''
 import re
 import json
 from scrapy.selector import Selector
