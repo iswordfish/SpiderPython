@@ -1,5 +1,7 @@
 #coding:utf-8
-
+'''
+https://bitbucket.org/account/signin/ 模拟登陆
+'''
 
 
 import requests
@@ -8,8 +10,12 @@ from bs4 import BeautifulSoup
 USERNAME = 'fizlbq@gmail.com'
 PWD = 'Ll139196'
 
-# LoginUrl = 'https://bitbucket.org/account/signin/'
 LoginUrl = 'https://bitbucket.org/account/signin/'
+
+user_url='https://bitbucket.org/fiz_LBQ/'
+
+
+filename='login.html'
 
 headers = {
     'Host': 'bitbucket.org',
@@ -23,66 +29,39 @@ headers = {
 
 formData = {
     'next': '/',
-    # 'csrfmiddlewaretoken': "csrfmiddlewaretoken",
     "username": USERNAME,
     "password": PWD,
 
 
 }
 s=requests.Session()
-# RESULT = s.get(LoginUrl, headers=headers,data=formData)
 RESULT = s.get(LoginUrl, headers=headers)
-print
 
 content = RESULT.content
 
-with open('login.html', 'wb') as fp:
+with open(filename, 'wb') as fp:
     fp.write(content)
-html = open('login.html', 'r')
+
+html = open(filename, 'r')
 soup = BeautifulSoup(html, "html.parser")
 token = soup.find('input', {'name': 'csrfmiddlewaretoken'})['value']
 
-print token
+
+
 formData['csrfmiddlewaretoken']=token
 
 
 
 
-''' cooke'''
-import  pickle
-
-def save_cookies(requests_cookiejar, filename):
-    with open('cookies.txt', 'wb') as f:
-        pickle.dump(requests_cookiejar, f)
-
-def load_cookies(filename):
-    with open(filename, 'rb') as f:
-        return pickle.load(f)
 
 
-save_cookies(s.cookies, 'cookies.txt')
-
-
-
-
-
-
-
-RESULT=s.post(LoginUrl, headers=headers,data=formData,cookies=load_cookies('cookies.txt'))
-print RESULT.url
-
-
-print RESULT.status_code
-print RESULT.cookies
-
-with open('test.html', 'w') as fp:
-    fp.write(content)
-
-
-html = open('test.html', 'r')
-soup = BeautifulSoup(html, "html.parser")
-token = soup.find('input', {'name': 'csrfmiddlewaretoken'})['value']
 RESULT=s.post(LoginUrl, headers=headers,data=formData,)
 print RESULT.status_code
 print RESULT.cookies
-print RESULT.content
+# print RESULT.content
+''' 跳转到个人信息页面进行爬去'''
+html_userInfo=s.get(user_url)
+
+
+with open('bitbucket.html', 'w') as fp:
+    fp.write(html_userInfo.content)
