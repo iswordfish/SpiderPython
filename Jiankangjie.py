@@ -1,6 +1,6 @@
 #coding:utf-8
 '''
-健康界
+健康界 新闻爬去
 '''
 import requests
 from bs4 import BeautifulSoup
